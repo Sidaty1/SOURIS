@@ -9,11 +9,11 @@ function [time, DATA, DATAF] = Average5 (voltage, NoSouris)
         souris = 'Souris1/';
     end
     if voltage == 300 || voltage == 400 || voltage == 500 || voltage == 600
-       C1=SourisXLS(souris + voltage + '/Data_1');
-       C2=SourisXLS(souris + voltage + '/Data_2');
-       C3=SourisXLS(souris + voltage + '/Data_3');
-       C4=SourisXLS(souris + voltage + '/Data_4');
-       C5=SourisXLS(souris + voltage + '/Data_5');
+       C1=SourisXLS(strcat(souris, num2str(voltage), '/Data_1'));
+       C2=SourisXLS(strcat(souris, num2str(voltage), '/Data_2'));
+       C3=SourisXLS(strcat(souris, num2str(voltage), '/Data_3'));
+       C4=SourisXLS(strcat(souris, num2str(voltage), '/Data_4'));
+       C5=SourisXLS(strcat(souris, num2str(voltage), '/Data_5'));
     end
     DATA(:,:,1)=C1;
     DATA(:,:,2)=C2;
