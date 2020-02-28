@@ -1,5 +1,6 @@
 function X = forum_handle2()
     [~,~,DATAF]=Average5(600,1);
+    X=[];
     for i = 0:29
         m=DATAF(1+i*30:30+i*30,2:end)';
         e = eps(max(m(:)));

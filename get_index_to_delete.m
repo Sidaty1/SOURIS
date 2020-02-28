@@ -1,4 +1,4 @@
-function indices = get_index_to_delete()
+function X = get_index_to_delete()
     [~,~,DATAF]=Average5(600,1);
     for i = 5:6
         m=DATAF(1+i*30:30+i*30,2:end)';
@@ -13,6 +13,7 @@ function indices = get_index_to_delete()
                 if not( isnan( x(ii) ) )
                     ix = find( abs( m(:,jj)-y(ii) ) < e );
                     text( x(ii), y(ii), sprintf( '\\leftarrowY%02d', ix ) )
+                    X = [X, ix]
                 end
             end
         end
