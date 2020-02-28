@@ -1,5 +1,6 @@
-function X = get_index_to_delete()
+function X = boxplot_moreau()
     [~,~,DATAF]=Average5(600,1);
+    X=[];
     for i = 5:6
         m=DATAF(1+i*30:30+i*30,2:end)';
         e = eps(max(m(:)));
