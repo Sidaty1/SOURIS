@@ -1,4 +1,10 @@
 function h = forum_handle2()
+    [~,~,DATAF]=Average5(600,1);
+    for i = 0:29
+        m=DATAF(1+i*30:30+i*30,2:end)';
+        e = eps(max(m(:)));
+        figure,
+        boxplot( DATAF(1+i*30:30+i*30,2:end)','whisker',3 )
         h = flipud(findobj(gcf,'tag','Outliers')); % flip order of handles
         for jj = 1 : length( h )
             x =  get( h(jj), 'XData' );
