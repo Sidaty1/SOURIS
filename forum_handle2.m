@@ -1,3 +1,4 @@
+function forum_handle2()
 [time,DATA,DATAF]=Average5(600,'Souris1');
 boxplot( DATAF(1+13*30:30+13*30,2:end)','whisker',5 )
     h = flipud(findobj(gcf,'tag','Outliers')); % flip order of handles
@@ -11,3 +12,4 @@ boxplot( DATAF(1+13*30:30+13*30,2:end)','whisker',5 )
             end
         end
     end
+end
