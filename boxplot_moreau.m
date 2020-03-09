@@ -8,7 +8,7 @@ function [m,X] = boxplot_moreau()
     m=DATAF(indtimeinf:indtimesup,2:end)';
     e = eps(max(m(:)));
     figure,
-    boxplot(m,'whisker',2)
+    boxplot(m,'whisker',2.2)
     h = flipud(findobj(gcf,'tag','Outliers')); % flip order of handles
     for jj = 1 : length( h )
         x =  get( h(jj), 'XData' );
