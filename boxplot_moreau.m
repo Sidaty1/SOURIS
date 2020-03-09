@@ -5,10 +5,10 @@ function [m,X] = boxplot_moreau()
     limtimesup=6.0; %higher limit of stimulation time window
     [~,indtimeinf]=min(abs(time-limtimeinf)); % finding the index corresponding to limtimeinf
     [~,indtimesup]=min(abs(time-limtimesup)); % finding the index corresponding to limtimesup
-    m=DATAF(indtimeinf:indtimesup,2:end)'; % transposing DATA matrix to use boxplot
+    m=max(DATAF(indtimeinf:indtimesup,2:end))'; % Maximum of each label in that interval
     e = eps(max(m(:))); %eps for precision limit
     figure,
-    boxplot(m,'whisker',2.2) %whisker length determined to have 10-20% outliers
+    boxplot(m,'whisker',1.5) %whisker length determined to have 10-20% outliers
     h = flipud(findobj(gcf,'tag','Outliers')); % flip order of handles
     for jj = 1 : length( h )
         x =  get( h(jj), 'XData' );
