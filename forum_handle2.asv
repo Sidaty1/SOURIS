@@ -7,8 +7,7 @@ function [m,X] = forum_handle2()
     X=[];
     for i = 5:5
         m=DATAF(1+i*54:54+i*54,2:end)'; % Cutting the matrix at the desired interval
-                                        % transposing to do a boxplot per
-                                        % sample
+                                        % transpo
         e = eps(max(m(:)));
         figure,
         boxplot(m,'whisker',3 )
