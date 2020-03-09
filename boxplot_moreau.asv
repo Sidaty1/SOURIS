@@ -3,10 +3,10 @@ function X = boxplot_moreau()
     X=[];
     limtimeinf=5;
     limtimesup=6;
-    m=DATAF(find(time(time>limtimeinf & time<limtimesup)),2:end);
+    m=DATAF(find(time(time>limtimeinf & time<limtimesup)),2:end)';
     e = eps(max(m(:)));
     figure,
-    boxplot(max(m))
+    boxplot(m)
     h = flipud(findobj(gcf,'tag','Outliers')); % flip order of handles
     for jj = 1 : length( h )
         x =  get( h(jj), 'XData' );
@@ -14,8 +14,10 @@ function X = boxplot_moreau()
         for ii = 1 : length( x )
             if not( isnan( x(ii) ) )
                 ix = find( abs( m(:,jj)-y(ii) ) < e );
+                display(abs( m(:,jj)-y(ii)))
+                display(e)
                 text( x(ii), y(ii), sprintf( '\\leftarrowY%02d', ix ) )
-                X = [X, ix]
+                X = [X, ix];
             end
         end
     end
