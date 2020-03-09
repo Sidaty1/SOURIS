@@ -1,11 +1,11 @@
-function X = forum_handle2()
+function [m,X] = forum_handle2()
     [~,~,DATAF]=Average5(600,1);
     X=[];
-    for i = 0:29
-        m=DATAF(1+i*30:30+i*30,2:end)';
+    for i = 5:5
+        m=DATAF(1+i*54:54+i*54,2:end)';
         e = eps(max(m(:)));
         figure,
-        boxplot( DATAF(1+i*30:30+i*30,2:end)','whisker',3 )
+        boxplot(m,'whisker',3 )
         h = flipud(findobj(gcf,'tag','Outliers')); % flip order of handles
         for jj = 1 : length( h )
             x =  get( h(jj), 'XData' );
