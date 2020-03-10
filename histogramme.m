@@ -8,7 +8,7 @@ function histogramme(NoSouris)
     end
     for i = 1:length(voltages)
         voltage = voltages(i);
-        [time,~, DATAF] = Average5(voltage, NoSouris);
+        [time,~,~, DATAF] = Average5(voltage, NoSouris);
         for roi = 1:NoOfColumn
             res = check_activ(DATAF, time, roi);
             if res == 1
