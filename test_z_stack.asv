@@ -9,8 +9,18 @@ for ii = 2 : size(tiff_info, 1)
     temp_tiff = imread('Z_stack.tiff', ii);
     tiff_stack = cat(3 , tiff_stack, temp_tiff);
 end
-implay(tiff_stack) % playing a video of the stack
+%implay(tiff_stack) % playing a video of the stack
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% figure,
+% %plot(tiff_stack(:,:,1)')
+% imshow(tiff_stack(:,:,1)')
+% imshow(tiff_stack(:,:,2)')
+% imshow(tiff_stack(:,:,3)')
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+permuted_stack = permute(tiff_stack,[3 1 2]);
+viewer3d(tiff_spermuted_stacktack)
 
 
