@@ -1,0 +1,26 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  First try at stack - FAILED  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% I = []; % Before the loop
+% for i=1:141
+%     % {} = cell array
+%   images{i} = imread(sprintf('Z_stack.tiff',i));
+%   I = cat(3, I, images{i});  % Tack on slice i into a new cell.
+%   I{i} = rgb2gray(images{i});
+% end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  Second try at stack - SUCCESS ?  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+tiff_info = imfinfo('Z_stack.tiff'); % return tiff structure, one element per image
+tiff_stack = imread('Z_stack.tiff', 1) ; % read in first image
+%concatenate each successive tiff to tiff_stack
+for ii = 2 : size(tiff_info, 1)
+    temp_tiff = imread('Z_stack.tiff', ii);
+    tiff_stack = cat(3 , tiff_stack, temp_tiff);
+end
+implay(tiff_stack)
+
+% N = lsize(tiff_info, 1) ;
+% for i = 1:N 
+%     imshow(tiff_stack) ;
+%     pause(0.1)
+% end
