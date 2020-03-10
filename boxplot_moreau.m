@@ -1,5 +1,5 @@
 function [m,X] = boxplot_moreau()
-    [time,~,DATAF]=Average5(600,1);
+    [time,~,~,DATAF]=Average5(600,1);
     X=[]; % array containing the mabels of outliers
     limtimeinf=5.0; %lower limit of stimulation time window
     limtimesup=6.0; %higher limit of stimulation time window

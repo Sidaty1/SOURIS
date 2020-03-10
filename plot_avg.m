@@ -1,5 +1,5 @@
 function plot_avg(NoSouris, voltage, roi)
-        [time, ~, DATAF] = Average5(voltage, NoSouris);
+        [time, ~,~, DATAF] = Average5(voltage, NoSouris);
         data=DATAF(:,roi+1);
         [ ~, ilx ] = min(abs(time-3));
         [ ~, ihx ] = min(abs(time-4.5));

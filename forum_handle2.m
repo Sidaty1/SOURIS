@@ -3,7 +3,7 @@ function [m,X] = forum_handle2()
 %  https://fr.mathworks.com/matlabcentral/answers/155109-index-of-box-plot-outliers
 %  done in an interval of a second considering a sampling frequency of 54Hz
 
-    [~,~,DATAF]=Average5(600,1);        %Data extraction matrix
+    [~,~,~,DATAF]=Average5(600,1);        %Data extraction matrix
     X=[];
     for i = 5:5
         m=DATAF(1+i*54:54+i*54,2:end)'; % Cutting the matrix at the desired interval
