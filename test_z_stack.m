@@ -70,7 +70,8 @@ end
 I=double(tiff_stack);
 I=I./max(max(max(I)));          %Image normalization
 I=imadjustn(I);                 %histogram equalization
-viewer3d(I)                     %3D rendering
+sI=smooth3(I,'gaussian',3);     %applying a gaussian filter with a 3x3x3 window size with a default sd of 0.65
+viewer3d(sI)                    %3D rendering
  
                 
             
