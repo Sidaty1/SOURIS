@@ -65,35 +65,12 @@ end
 % c = C(:);
 % 
 % h = scatter3(x,y,z,s,c);
+%%%%%%%%%%%%%%%% Viewer3D toolbox is necessary : https://fr.mathworks.com/matlabcentral/fileexchange/21993-viewer3d
 
-X= zeros(512,512);
-Y= zeros(512,158);
-Z= zeros(158,512);
-s=size(tiff_stack);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ù
- for i=1:s(1)
-     for j=1:s(2)
-         for k=1:s(3)
-                X(i,j) = tiff_stack(i,j,k);
-         end
-     end
- end
- 
-  for i=1:s(1)
-     for j=1:s(2)
-         for k=1:s(3)
-                Y(j,k) = tiff_stack(i,j,k);
-         end
-     end
-  end
- 
-   for i=1:s(1)
-     for j=1:s(2)
-         for k=1:s(3)
-                Z(k,i) = tiff_stack(i,j,k);
-         end
-     end
- end
+I=double(tiff_stack);
+I=I./max(max(max(I)));          %Image normalization
+I=imadjustn(I);                 %histogram equalization
+viewer3d(I)                     %3D rendering
  
                 
             
