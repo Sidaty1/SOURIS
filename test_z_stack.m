@@ -10,3 +10,7 @@ for ii = 2 : size(tiff_info, 1)
     tiff_stack = cat(3 , tiff_stack, temp_tiff);
 end
 implay(tiff_stack) % playing a video of the stack
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
