@@ -48,4 +48,24 @@ for rep=1:5
         end
     end
 end
+% for i=1:22
+%     figure,
+%     bar(300:100:600, Res(2:end,2+(i-1)*10:(i-1)*10+11))
+% end
+count=zeros(5,4);
+for i=2:5
+    count(1,i-1)=sum(Res(i,2:end)==1);
+    count(2,i-1)=sum(Res(i,2:end)==2);
+    count(3,i-1)=sum(Res(i,2:end)==3);
+    count(4,i-1)=sum(Res(i,2:end)==4);
+    count(5,i-1)=sum(Res(i,2:end)==5);
+end
+close all;
+chartlabels = {'1 Time','2 Times','3 Times','4 Times','5 Times'};
+figure, pie(count(:,1)), title('Activations (300mV)'),legend(chartlabels);
+figure, pie(count(:,2)), title('Activations (400mV)'),legend(chartlabels);
+figure, pie(count(:,3)), title('Activations (500mV)'),legend(chartlabels);
+figure, pie(count(:,4)), title('Activations (600mV)'),legend(chartlabels);
+camambertT=[sum(count(1,:)) sum(count(2,:)) sum(count(3,:)) sum(count(4,:)) sum(count(5,:))];
+figure, pie(camambertT), title('Activations'), legend(chartlabels);                                       % Pie chart with all the data
 end
