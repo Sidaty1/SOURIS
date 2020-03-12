@@ -29,7 +29,7 @@ high_out = 0.995;
 
 Iadjust(:,:,1:69)=imadjustn(sI(:,:,1:69)); %adjusting images by subpart
 Iadjust(:,:,70:S(3))=imadjustn(sI(:,:,70:S(3)));
-se = strel('sphere',3);
+se = strel('sphere',5);
 
 % for i = 1:69
 %     %Isharp(:,:,i) = imsharpen(sI(:,:,i));
@@ -41,13 +41,10 @@ se = strel('sphere',3);
      Iadjust(:,:,i)=edge(Iadjust(:,:,i),'Prewitt');
      
  end 
-%Iadjust(:,:,70:S(3))=edge3(Iadjust(:,:,70:S(3)),'Sobel', );
-Ifinal(:,:,70:S(3))= imclose(Iadjust(:,:,70:S(3)),se);
-Ifinal(:,:,70:S(3))=smooth3(Ifinal(:,:,70:S(3)),'gaussian',3);
-Ifiber = Ifinal(:,:,70:S(3));
 
-volshow(Ifiber);
-%viewer3d(Ifinal(:,:,70:S(3)))                    %3D rendering
+Ifinal(:,:,i)= imclose(Iadjust(:,:,i),se);
+Ifinal(:,:,70:S(3))=smooth3(Ifinal(:,:,70:S(3)),'gaussian',9);
+viewer3d(Ifinal(:,:,70:S(3)))                    %3D rendering
  
 %look for the optic fiber between the frames 70 and 130
                 
