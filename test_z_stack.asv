@@ -1,9 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Storing the tiff stack in  a 3d mat and displayng a video of it
 %    /!\ Requires "Image Processing Toolbox"
-close all
-clear all
-load('config.mat')
+
 tiff_info = imfinfo('Z_stack_mouse1.tiff'); % return tiff structure, one element per image
 tiff_stack = imread('Z_stack_mouse1.tiff', 1) ; % read in first image
 %concatenate each successive tiff to tiff_stack
@@ -33,8 +31,7 @@ high_out = 0.995;
 %adjusting images by subpart
 %Iadjust(1:255,1:239,1:69)=imadjustn(sI(1:255,1:239,1:69)); 
 Iadjust=imadjustn(sI); 
-Iadjust_aux = Iadjust;
-Ifiber_adjust =imadjustn(sI(256:end,240:420,110:end)); %fiber subpart
+Ifiber_adjust =imadjustn(sI(256:end,240:end,70:end)); %fiber subpart
 se = strel('sphere',3);
 
 % for i = 1:69
@@ -47,14 +44,13 @@ se = strel('sphere',3);
 %      Iadjust(:,:,i)=edge(Iadjust(:,:,i),'Prewitt');
 %      
 %  end
-%Iadjust(256:end,240:end,90:end)=Ifiber_adjust;
-Ifiber_adjust=smooth3(Ifiber_adjust,'gaussian',3);
-BWfiber = imbinarize(Ifiber_adjust, 0.77);
+Iadjust(256:end,240:end,70:end)=Ifiber_adjust;
+Iadjust(256:end,240:end,70:end)=smooth3(Iadjust(256:end,240:end,70:end),'gaussian',3);
+BWfiber = imbinarize(Iadjust(256:end,240:end,70:end), 0.77);
 
-Mask = 0.5*(1-BWfiber);
-Iadjust(256:end,240:420,110:end)=Iadjust(256:end,240:420,110:end)-Mask;
-Iadjust=smooth3(Iadjust,'gaussian',51);
-volshow(Iadjust,config)
+Mask = zeros(S);
+Mask(256:end,240:end,70:end) = 1-BWfiber;
+Iadjust = Iadjust + 0.5*Mask;
 %Iadjust(256:end,240:end,70:end) = 1- Iadjust(256:end,240:end,70:end);
 
 %Ifiber=edge3(Ifiber,'Sobel',0.005 );
@@ -64,7 +60,7 @@ volshow(Iadjust,config)
 
 %volshow(Ifiber);
 %viewer3d(1-Ifiber)                    %3D rendering
-%viewer3d(Iadjust) 
+viewer3d(Iadjust) 
  
 %look for the optic fiber between the frames 70 and 130
                 
