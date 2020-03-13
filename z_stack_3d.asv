@@ -1,4 +1,4 @@
-function [Iadjust, Iaux]= z_stack_3d (MouseNo,x,y,z)
+function [Iadjust, stack]= z_stack_3d (MouseNo,x,y,z)
 % Storing the tiff stack in  a 3d mat and displayng a video of it
 %    /!\ Requires "Image Processing Toolbox"
 sx=size(x);
@@ -34,7 +34,6 @@ sI=smooth3(Iraw,'gaussian',3);     %applying a gaussian filter with a 3x3x3 wind
 
 
 Iadjust=imadjustn(sI); 
-Iaux=Iadjust;
 Ifiber_adjust =imadjustn(sI(y(1):y(2),x(1):x(2),z(1):z(2))); %fiber subpart
 
 Ifiber_adjust=smooth3(Ifiber_adjust,'gaussian',3);
