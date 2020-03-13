@@ -19,16 +19,19 @@ Iraw=double(tiff_stack);
 Iraw=Iraw./max(max(max(Iraw)));          %Image normalization
 S = size(Iraw);
 %I=imadjustn(Iraw);                 %histogram equalization
-sI=smooth3(I,'gaussian',3);     %applying a gaussian filter with a 3x3x3 window size with a default sd of 0.65
+sI=smooth3(Iraw,'gaussian',3);     %applying a gaussian filter with a 3x3x3 window size with a default sd of 0.65
 Isharp = zeros(S);
 Iadjust = zeros(S);
+%Boundaries
 low_in = 0;
 high_in = 1;
 low_out = 0;
 high_out = 0.995;
 
-Iadjust(1:255,1:239,1:69)=imadjustn(sI(1:255,1:239,1:69)); %adjusting images by subpart
-Iadjust(256:end,240:end,70:end)=imadjustn(sI(256:end,240:end,70:end));
+%adjusting images by subpart
+%Iadjust(1:255,1:239,1:69)=imadjustn(sI(1:255,1:239,1:69)); 
+Iadjust=imadjustn(sI); 
+Ifiber_adjust =imadjustn(sI(256:end,240:end,70:end)); %fiber subpart
 se = strel('sphere',3);
 
 % for i = 1:69
@@ -41,6 +44,7 @@ se = strel('sphere',3);
 %      Iadjust(:,:,i)=edge(Iadjust(:,:,i),'Prewitt');
 %      
 %  end
+Iadjust(256:end,240:end,70:end)=Ifiber_adjust;
 Iadjust(256:end,240:end,70:end)=smooth3(Iadjust(256:end,240:end,70:end),'gaussian',3);
 BWfiber = imbinarize(Iadjust(256:end,240:end,70:end), 0.77);
 
