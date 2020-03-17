@@ -34,7 +34,10 @@ high_out = 0.995;
 %Iadjust(1:255,1:239,1:69)=imadjustn(sI(1:255,1:239,1:69)); 
 Iadjust=imadjustn(sI); 
 Iadjust_aux = Iadjust;
-Ifiber_adjust =imadjustn(sI(256:end,240:420,110:end)); %fiber subpart
+%Ifiber_adjust =imadjustn(sI(256:end,240:420,110:end)); %fiber subpart for
+%first z_stack
+Ifiber_adjust =imadjustn(sI(377:end,300:399,130:end)); %fiber subpart 2nd
+%stack
 se = strel('sphere',3);
 
 % for i = 1:69
@@ -47,14 +50,18 @@ se = strel('sphere',3);
 %      Iadjust(:,:,i)=edge(Iadjust(:,:,i),'Prewitt');
 %      
 %  end
-%Iadjust(256:end,240:end,90:end)=Ifiber_adjust;
+%Iadjust(256:end,240:end,90:end)=Ifiber_adjust;%first stack
+Iadjust(377:end,300:399,130:end)=Ifiber_adjust; %second stack
 Ifiber_adjust=smooth3(Ifiber_adjust,'gaussian',3);
 BWfiber = imbinarize(Ifiber_adjust, 0.77);
 
 Mask = 0.5*(1-BWfiber);
-Iadjust(256:end,240:420,110:end)=Iadjust(256:end,240:420,110:end)-Mask;
+%Iadjust(256:end,240:420,110:end)=Iadjust(256:end,240:420,110:end)-Mask;
+%%first stack
+Iadjust(377:end,300:399,130:end)=Iadjust(377:end,300:399,130:end)-Mask;
 Iadjust=smooth3(Iadjust,'gaussian',15);
 volshow(Iadjust,config)
+
 %Iadjust(256:end,240:end,70:end) = 1- Iadjust(256:end,240:end,70:end);
 
 %Ifiber=edge3(Ifiber,'Sobel',0.005 );
@@ -62,10 +69,12 @@ volshow(Iadjust,config)
 
 % Ifiber = Ifinal(:,:,70:S(3));
 
-%volshow(Ifiber);
+
 %viewer3d(1-Ifiber)                    %3D rendering
 %viewer3d(Iadjust) 
  
 %look for the optic fiber between the frames 70 and 130
+% for new mouse1 (see mouse_prev for previous mouse studied), fiber is
+% locate from frame 130 to 412 along the Z axis
                 
             
