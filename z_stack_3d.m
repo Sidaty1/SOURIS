@@ -1,6 +1,10 @@
 function []= z_stack_3d (MouseNo,x,y,z)
 % Storing the tiff stack in  a 3d mat and displayng a video of it
 %    /!\ Requires "Image Processing Toolbox"
+if (size(x)(1)~=1 || size(y)(1)~=1 size(z)(1)~=1)
+    
+
+end
 switch MouseNo
     case 1
         mouse = 'mouse1';
@@ -10,9 +14,7 @@ switch MouseNo
         mouse = 'mouse1';
 end
 
-filname='Z_stack_'+mouse+'.tiff';
-close all
-clear all
+filename='Z_stack_'+mouse+'.tiff';
 tiff_info = imfinfo(filename); % return tiff structure, one element per image
 stack = imread(filename, 1) ; % read in first image
 %concatenate each successive tiff to tiff_stack
