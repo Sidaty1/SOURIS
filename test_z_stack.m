@@ -53,7 +53,7 @@ BWfiber = imbinarize(Ifiber_adjust, 0.77);
 
 Mask = 0.5*(1-BWfiber);
 Iadjust(256:end,240:420,110:end)=Iadjust(256:end,240:420,110:end)-Mask;
-Iadjust=smooth3(Iadjust,'gaussian',51);
+Iadjust=smooth3(Iadjust,'gaussian',15);
 volshow(Iadjust,config)
 %Iadjust(256:end,240:end,70:end) = 1- Iadjust(256:end,240:end,70:end);
 
