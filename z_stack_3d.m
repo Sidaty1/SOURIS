@@ -25,8 +25,6 @@ for ii = 2 : size(tiff_info, 1)
     stack = cat(3 , stack, temp_tiff);
 end
 
-%%%%%%%%%%%%%%%% Viewer3D toolbox is necessary : https://fr.mathworks.com/matlabcentral/fileexchange/21993-viewer3d
-
 Iraw=double(stack);
 Iraw=Iraw./max(max(max(Iraw)));          %Image normalization
 
@@ -43,5 +41,5 @@ Mask = 0.5*(1-BWfiber);
 Iadjust(y(1):y(2),x(1):x(2),z(1):z(2))=Iadjust(y(1):y(2),x(1):x(2),z(1):z(2))-Mask;
 
 load('config.mat');
-volshow(Iadjust,config)
+volshow(Iadjust,config);
 end

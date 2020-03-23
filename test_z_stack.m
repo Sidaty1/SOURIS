@@ -60,7 +60,7 @@ Mask = 0.5*(1-BWfiber);
 %%first stack
 Iadjust(377:end,300:399,130:end)=Iadjust(377:end,300:399,130:end)-Mask;
 Iadjust=smooth3(Iadjust,'gaussian',15);
-volshow(Iadjust,config)
+volshow(Iadjust,config);
 
 %Iadjust(256:end,240:end,70:end) = 1- Iadjust(256:end,240:end,70:end);
 
